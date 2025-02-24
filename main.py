@@ -1,13 +1,13 @@
 # main.py
 from app import app
-from app.core.config import Config
+from app.core.config import settings
 
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
-        app, 
-        host=Config.SERVER_HOST, 
-        port=Config.SERVER_PORT,
-        reload=Config.DEBUG,
-        workers=Config.WORKERS
+        "main:app",
+        host=settings.SERVER_HOST,
+        port=settings.SERVER_PORT,
+        reload=settings.DEBUG,
+        workers=settings.WORKERS
     )

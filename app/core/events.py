@@ -7,6 +7,7 @@ from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from app.core.config import settings
 from app.api.router import router
 
+
 async def startup_handler() -> None:
     """
     应用启动时的处理函数
@@ -14,12 +15,14 @@ async def startup_handler() -> None:
     # 数据库连接初始化等操作
     pass
 
+
 async def shutdown_handler() -> None:
     """
     应用关闭时的处理函数
     """
     # 清理资源等操作
     pass
+
 
 def configure_middleware(app: FastAPI) -> None:
     """
@@ -33,12 +36,13 @@ def configure_middleware(app: FastAPI) -> None:
         allow_methods=["*"],
         allow_headers=["*"],
     )
-    
+
     # 可信主机中间件
     app.add_middleware(
-        TrustedHostMiddleware, 
+        TrustedHostMiddleware,
         allowed_hosts=["*"]  # 生产环境需要配置具体的允许域名
     )
+
 
 def configure_routers(app: FastAPI) -> None:
     """
@@ -47,10 +51,12 @@ def configure_routers(app: FastAPI) -> None:
     # 注册API路由
     app.include_router(router, prefix=settings.API_V1_STR)
 
+
 def configure_exception_handlers(app: FastAPI) -> None:
     """
     配置全局异常处理
     """
+
     @app.exception_handler(Exception)
     async def global_exception_handler(request: Request, exc: Exception):
         # 全局异常处理

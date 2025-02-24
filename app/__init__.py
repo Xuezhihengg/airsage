@@ -14,6 +14,7 @@ from app.core.events import (
     configure_exception_handlers,
 )
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator:
     """
@@ -24,6 +25,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator:
     yield
     # 关闭事件
     await shutdown_handler()
+
 
 def create_app() -> FastAPI:
     """
@@ -38,15 +40,16 @@ def create_app() -> FastAPI:
         openapi_url="/openapi.json",
         lifespan=lifespan,
     )
-    
+
     # 配置中间件
     configure_middleware(app)
     # 配置路由
     configure_routers(app)
     # 配置异常处理
     configure_exception_handlers(app)
-    
+
     return app
+
 
 # 创建应用实例
 app = create_app()

@@ -3,7 +3,7 @@ import logging
 import sys
 from typing import Any
 from pydantic import BaseModel
-from loguru import logger, Logger
+from loguru import logger
 from app.core.config import settings
 
 class InterceptHandler(logging.Handler):
@@ -60,7 +60,7 @@ def setup_logging() -> None:
         logging_logger = logging.getLogger(log_name)
         logging_logger.handlers = [InterceptHandler()]
 
-def get_logger() -> Logger:
+def get_logger() :
     """
     获取logger实例
     """

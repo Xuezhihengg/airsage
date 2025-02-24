@@ -3,6 +3,7 @@ from typing import Optional
 from datetime import datetime
 from pydantic import BaseModel, Field, ConfigDict
 
+
 class Token(BaseModel):
     """
     Token响应模型
@@ -13,7 +14,7 @@ class Token(BaseModel):
         example="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxx"
     )
     refresh_token: str = Field(
-        ..., 
+        ...,
         description="刷新令牌",
         example="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.yyy"
     )
@@ -32,12 +33,13 @@ class Token(BaseModel):
         json_schema_extra={
             "example": {
                 "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.xxx",
-                "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.yyy", 
+                "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.yyy",
                 "token_type": "bearer",
                 "expires_in": 3600
             }
         }
     )
+
 
 class TokenPayload(BaseModel):
     """
@@ -68,10 +70,11 @@ class TokenPayload(BaseModel):
         description="JWT ID",
         example="unique-jwt-id-123"
     )
-    
+
     model_config = ConfigDict(json_encoders={
         datetime: lambda v: v.timestamp()
     })
+
 
 class RefreshToken(BaseModel):
     """
@@ -83,7 +86,7 @@ class RefreshToken(BaseModel):
         min_length=1,
         example="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.yyy"
     )
-    
+
     model_config = ConfigDict(
         json_schema_extra={
             "example": {
@@ -91,6 +94,7 @@ class RefreshToken(BaseModel):
             }
         }
     )
+
 
 class TokenBlacklist(BaseModel):
     """
@@ -115,7 +119,7 @@ class TokenBlacklist(BaseModel):
         default_factory=datetime.utcnow,
         description="创建时间"
     )
-    
+
     model_config = ConfigDict(
         json_schema_extra={
             "example": {
@@ -126,6 +130,7 @@ class TokenBlacklist(BaseModel):
             }
         }
     )
+
 
 class TokenMetadata(BaseModel):
     """
@@ -155,5 +160,5 @@ class TokenMetadata(BaseModel):
         default_factory=datetime.utcnow,
         description="创建时间"
     )
-    
+
     model_config = ConfigDict(from_attributes=True)

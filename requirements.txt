@@ -49,4 +49,12 @@ pre-commit>=3.6.0   # Git hooks管理
 # 文档
 mkdocs>=1.5.0
 mkdocs-material>=9.5.0
-mkdocstrings[python]>=0.24.0 
+mkdocstrings[python]>=0.24.0
+
+# 爬虫服务
+selenium
+webdriver-manager
+fake_useragent
+pandas
+scrapy
+scraperapi-sdk
